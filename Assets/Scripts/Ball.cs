@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Ball : MonoBehaviour {
     [SerializeField] private float speed = 10f;
@@ -26,5 +28,21 @@ public class Ball : MonoBehaviour {
     void ResetBall() {
         transform.position = Vector2.zero;
         _rigidbody2D.linearVelocity = Vector2.zero;
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Paddle")) {
+            float paddleY = other.collider.transform.position.y;
+            float contactY = transform.position.y;
+            float paddleHeight = other.collider.bounds.size.y;
+            
+            float offset = contactY - paddleY;
+            float normalizedOffset = offset / (paddleHeight / 2);
+            
+            // Create a new direction with the same horizontal direction but new vertical angle
+            Vector2 direction = new Vector2(_rigidbody2D.linearVelocity.x > 0 ? -1 : 1, normalizedOffset).normalized;
+            _rigidbody2D.linearVelocity = direction * speed;
+        }
     }
 }
