@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class Ball : MonoBehaviour {
-    [SerializeField] float _speed = 10f;
+    [SerializeField] private float speed = 10f;
     
     private Rigidbody2D _rigidbody2D;
     
@@ -20,7 +20,7 @@ public class Ball : MonoBehaviour {
         
         Vector2 direction = new Vector2(x, y).normalized;
         
-        _rigidbody2D.linearVelocity = direction * _speed;
+        _rigidbody2D.linearVelocity = direction * speed;
     }
 
     void ResetBall() {
