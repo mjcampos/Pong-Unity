@@ -30,8 +30,7 @@ public class Ball : MonoBehaviour {
         _rigidbody2D.linearVelocity = Vector2.zero;
     }
 
-    void OnCollisionEnter2D(Collision2D other)
-    {
+    void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.CompareTag("Paddle")) {
             float paddleY = other.collider.transform.position.y;
             float contactY = transform.position.y;
