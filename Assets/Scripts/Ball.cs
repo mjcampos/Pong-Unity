@@ -3,13 +3,15 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class Ball : MonoBehaviour {
-    [SerializeField] private float speed = 10f;
+    [SerializeField] float speed = 10f;
     
-    private Rigidbody2D _rigidbody2D;
+    Rigidbody2D _rigidbody2D;
+    AudioSource _audioSource;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() {
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        _audioSource = GetComponent<AudioSource>();
         
         ResetBall();
     }
@@ -42,6 +44,9 @@ public class Ball : MonoBehaviour {
             Vector2 direction = new Vector2(_rigidbody2D.linearVelocity.x > 0 ? -1 : 1, normalizedOffset).normalized;
             _rigidbody2D.linearVelocity = direction * speed;
         }
+        
+        // No matter what it hits, play collision sound
+        _audioSource.Play();
     }
 
     public void StartGame() {
