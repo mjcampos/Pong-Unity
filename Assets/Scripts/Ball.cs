@@ -12,7 +12,6 @@ public class Ball : MonoBehaviour {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         
         ResetBall();
-        LaunchBall();
     }
 
     void LaunchBall() {
@@ -43,5 +42,10 @@ public class Ball : MonoBehaviour {
             Vector2 direction = new Vector2(_rigidbody2D.linearVelocity.x > 0 ? -1 : 1, normalizedOffset).normalized;
             _rigidbody2D.linearVelocity = direction * speed;
         }
+    }
+
+    public void StartGame() {
+        // Get ball moving
+        LaunchBall();
     }
 }
