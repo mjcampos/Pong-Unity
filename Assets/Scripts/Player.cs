@@ -8,12 +8,11 @@ public class Player : MonoBehaviour {
     void Start() {
         ResetPosition();
     }
-
-    // Update is called once per frame
-    void LateUpdate() {
+    
+    void FixedUpdate() {
         float move = Input.GetAxis("Vertical");
         
-        transform.Translate(0, move * speed * Time.deltaTime, 0);
+        transform.Translate(Vector3.up * move * speed * Time.deltaTime);
     }
 
     void ResetPosition() {
