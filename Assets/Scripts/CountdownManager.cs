@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class CountdownManager : MonoBehaviour {
     public static CountdownManager Instance;
@@ -10,7 +11,9 @@ public class CountdownManager : MonoBehaviour {
     [SerializeField] Player player;
     [SerializeField] Enemy enemy;
     
-    int countdownTime = 1;
+    [SerializeField] TextMeshProUGUI countdownText;
+    
+    int countdownTime = 3;
 
     void Awake() {
         // Singleton pattern
@@ -20,16 +23,21 @@ public class CountdownManager : MonoBehaviour {
         }
         
         Instance = this;
+    }
 
+    void Start() {
+        countdownText.text = "";
         StartCoroutine(CountdownRoutine());
     }
-    
+
     IEnumerator CountdownRoutine() {
         while (countdownTime > 0) {
-            print(countdownTime);
+            countdownText.text = countdownTime.ToString();
             yield return new WaitForSeconds(1f);
             countdownTime--;
         }
+        
+        countdownText.text = "";
         
         StartGame();
     }
