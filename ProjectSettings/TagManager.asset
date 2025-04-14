@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - Paddle
+  - Player Goal
+  - Enemy Goal
   layers:
   - Default
   - TransparentFX
