@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
     public static GameManager Instance;
@@ -13,5 +14,9 @@ public class GameManager : MonoBehaviour {
         } else {
             Destroy(gameObject);
         }
+    }
+
+    public void LoadGame() {
+        SceneManager.LoadScene("Game");
     }
 }

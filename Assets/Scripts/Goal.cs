@@ -14,6 +14,6 @@ public class Goal : MonoBehaviour {
     IEnumerator CountdownRoutine()
     {
         yield return new WaitForSeconds(countdownTime);
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("Game");
     }
 }
