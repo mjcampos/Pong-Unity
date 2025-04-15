@@ -1,5 +1,6 @@
 using System;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -26,7 +27,7 @@ public class ScoreManager : MonoBehaviour {
             
             // Listen for scene changes
             SceneManager.sceneLoaded += OnSceneLoaded;
-        } else if (Instance != this) {
+        } else {
             Destroy(gameObject);
         }
     }
@@ -40,6 +41,10 @@ public class ScoreManager : MonoBehaviour {
         if (scene.name != _gameSceneName) {
             Destroy(gameObject);
             return;
+        }
+
+        if (scene.name == _gameSceneName && !isGameStillActive) {
+            Destroy(gameObject);
         }
         
         // Re-fetch score text UI
@@ -98,5 +103,9 @@ public class ScoreManager : MonoBehaviour {
             
             isGameStillActive = false;
         }
+    }
+
+    public void RestartScore() {
+        SceneManager.LoadScene(_gameSceneName);
     }
 }

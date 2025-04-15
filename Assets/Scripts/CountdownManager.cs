@@ -37,6 +37,7 @@ public class CountdownManager : MonoBehaviour {
         {
             gameConclusionText.text = ScoreManager.Instance.GetFinalMessage();
             gameConclusionText.enabled = true;
+            GameManager.Instance.SetRestartOption(true);
         }
     }
 
