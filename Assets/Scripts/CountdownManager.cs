@@ -12,6 +12,7 @@ public class CountdownManager : MonoBehaviour {
     [SerializeField] Enemy enemy;
     
     [SerializeField] TextMeshProUGUI countdownText;
+    [SerializeField] TextMeshProUGUI gameConclusionText;
     
     int countdownTime = 3;
 
@@ -26,8 +27,17 @@ public class CountdownManager : MonoBehaviour {
     }
 
     void Start() {
-        countdownText.text = "";
-        StartCoroutine(CountdownRoutine());
+        // When game begins make sure game conclusion text doesn't show
+        gameConclusionText.enabled = false;
+        
+        if (ScoreManager.Instance.GetIsGameStillActive()) {
+            countdownText.text = "";
+            StartCoroutine(CountdownRoutine());
+        } else
+        {
+            gameConclusionText.text = ScoreManager.Instance.GetFinalMessage();
+            gameConclusionText.enabled = true;
+        }
     }
 
     IEnumerator CountdownRoutine() {
