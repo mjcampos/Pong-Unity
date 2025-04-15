@@ -5,18 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
     public static GameManager Instance;
-
-    void Awake() {
-        // Singleton pattern to ensure only one GameManager exists
-        if (Instance == null) {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        } else {
-            Destroy(gameObject);
+    
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            SceneManager.LoadScene("Main Menu");
         }
-    }
-
-    public void LoadGame() {
-        SceneManager.LoadScene("Game");
     }
 }
